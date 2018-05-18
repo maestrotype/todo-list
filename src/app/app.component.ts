@@ -12,12 +12,29 @@ export class AppComponent {
     }
 
     getTodoItems() {
-        return this.model.items.filter(item => !item.done);
+    		return this.model.items;
+        
+    }
+
+    selectAll() {
+    	this.model.items.forEach(item => item.done = !item.done);
+    	console.log(this.model.items);
+    	
+    }
+
+    getSelectItems() {
+    	return this.model.items.filter(item => !item.done);
     }
 
     addItem(newItem) {
         if (newItem != "") {
             this.model.items.push(new TodoItem(newItem, false));
         }
-}
+      }
+
+    deleteItem() {
+    	// return this.model.items.filter(item => !item.done);
+    	this.model.items = this.getSelectItems();
+    	console.log(this.getSelectItems());
+    }    
 }

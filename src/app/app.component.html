@@ -5,16 +5,19 @@
     <button class="btn btn-primary m-t-1" (click)="addItem(todoText.value)">
         Add
     </button>
+    <button class="btn btn-primary m-t-1" (click)="deleteItem()">
+        Delete
+    </button>
 </div>
 
 <table class="table table-striped table-bordered">
     <thead>
-        <tr><th></th><th>Description</th><th>Done</th></tr>
+        <tr><th></th><th>Title</th><th>Select</th></tr>
     </thead>
     <tbody>
-        <tr *ngFor="let item of getTodoItems(); let i = index">
+        <tr #items *ngFor="let item of getTodoItems(); let id = index" >
             <td>
-            	{{ i + 1 }}
+            	{{ id + 1 }}
             </td>
             <td>
             	{{ item.action }}
@@ -26,6 +29,9 @@
                 <span *ngSwitchCase="true">Yes</span>
                 <span *ngSwitchDefault>No</span>
             </td>
+        </tr>
+        <tr><td></td><td>Select all</td><td><input type="checkbox" (click)="selectAll()" /></td>
+        	<td></td>
         </tr>
     </tbody>
 </table>
